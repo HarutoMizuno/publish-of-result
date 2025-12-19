@@ -93,7 +93,11 @@ $(window).on('load', function(){
         const firstTurn = logicTop + logicHeight - targetHeight;
         const secoundTurn = logicTop + logicHeight + freedomHeight - targetHeight;
 
-        if(logicTop <= scrollTop && scrollTop < endFixed){
+        if(scrollTop < logicTop){
+            $target.css({
+                'position': 'absolute',
+            })
+        }else if (logicTop <= scrollTop && scrollTop < endFixed){
             $target.css({
                 'position': 'fixed',
                 'bottom': 'auto',
