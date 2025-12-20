@@ -14,11 +14,14 @@ $(window).on('load', function(){
 
     //loadingPage fadeOut   mainPage fadeIn 
     setTimeout(function() {
-        jQuery('.l-loadingPage').addClass('l-loadingPage__is-hidden');
-        jQuery('.l-loadingPage').attr("aria-hidden", "true");
+        $('.l-loadingPage').addClass('l-loadingPage__is-hidden');
+        $('.l-loadingPage').attr("aria-hidden", "true");
+        $('#body').css({
+            'overflow-y': 'auto'
+        })
 
-        jQuery('.l-mainPage').fadeIn(1500); 
-        jQuery('.l-mainPage').attr("aria-hidden", "false");
+        $('.l-mainPage').fadeIn(1500); 
+        $('.l-mainPage').attr("aria-hidden", "false");
     },1500);
     //loadingPage fadeOut   mainPage fadeIn終了
 
