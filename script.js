@@ -98,20 +98,19 @@ $(window).on('load', function(){
                 $target.removeClass('strengh_text__is-end');
                 $target.removeClass('strengh_text__is-fixed');
             };
-            /*$target.css({
-                'position': 'absolute',
-            })*/
         }else if (logicTop <= scrollTop && scrollTop < endFixed){
             if($target.hasClass('strengh_text__is-end')){
                 $target.removeClass('strengh_text__is-end');
             }
+            if(!$('.strengh_text').hasClass('strengh_text__is-proceed')){
+                $('.strengh_text').addClass('strengh_text__is-proceed');
+            }
             $target.addClass('strengh_text__is-fixed');
-            /*$target.css({
-                'position': 'fixed',
-                'bottom': 'auto',
-                'top': '0',
-                'width': '100vw',
-            });*/
+            const targetTop = $target[0].getBoundingClientRect().top;
+            $target.css({
+                'top': targetTop + 'px',
+                'bottom': 'auto'
+            })
 
             if(logicTop <= scrollTop && scrollTop < firstTurn){
                 if($('.strengh_text').hasClass('strengh_text__is-proceed')){
@@ -121,6 +120,9 @@ $(window).on('load', function(){
                         const $elementsToFadeInLogic = $('.strengh_desc__logic, .strengh_titleText__logic');
                         $elementsToFadeInLogic.fadeIn(200).attr("aria-hidden", "false");
                     });
+                    if(!$('.strengh_text').hasClass('strengh_text__is-proceed')){
+                        $('.strengh_text').addClass('strengh_text__is-proceed');
+                    };
                 }
             }else if(firstTurn <= scrollTop && scrollTop < secoundTurn){
                 const $elementsToFadeOutFreedom = $('.strengh_titleText__logic, .strengh_desc__logic, .strengh_titleText__material, .strengh_desc__material');
@@ -146,13 +148,10 @@ $(window).on('load', function(){
                 $target.removeClass('strengh_text__is-fixed');
             }
             $target.addClass('strengh_text__is-end')
-            
-            /*$target.css({
-                'position': 'absolute',
-                'width': '100vw',
-                'top' :'auto',
+            $target.css({
+                'top': 'auto',
                 'bottom': '0'
-            });*/
+            })
         }
     })
     //パララックスアニメーション終了
