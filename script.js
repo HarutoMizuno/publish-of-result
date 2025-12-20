@@ -94,29 +94,37 @@ $(window).on('load', function(){
         const secoundTurn = logicTop + logicHeight + freedomHeight - targetHeight;
 
         if(scrollTop < logicTop){
-            $target.css({
+            if($target.hasClass('strengh_text__is-proceed')){
+                $target.removeClass('strengh_text__is-end');
+                $target.removeClass('strengh_text__is-fixed');
+            };
+            /*$target.css({
                 'position': 'absolute',
-            })
+            })*/
         }else if (logicTop <= scrollTop && scrollTop < endFixed){
-            $target.css({
+            if($target.hasClass('strengh_text__is-end')){
+                $target.removeClass('strengh_text__is-end');
+            }
+            $target.addClass('strengh_text__is-fixed');
+            /*$target.css({
                 'position': 'fixed',
                 'bottom': 'auto',
                 'top': '0',
                 'width': '100vw',
-            });
+            });*/
 
             if(logicTop <= scrollTop && scrollTop < firstTurn){
                 if($('.strengh_text').hasClass('strengh_text__is-proceed')){
                     const $elementsToFadeOutLogic = $('.strengh_titleText__freedom, .strengh_desc__freedom, .strengh_titleText__material, .strengh_desc__material');
 
-                    $elementsToFadeOutLogic.fadeOut(200).attr("aria-hidden", "true").promise().done(function(){
+                    $elementsToFadeOutLogic.stop(true, true).fadeOut(200).attr("aria-hidden", "true").promise().done(function(){
                         const $elementsToFadeInLogic = $('.strengh_desc__logic, .strengh_titleText__logic');
                         $elementsToFadeInLogic.fadeIn(200).attr("aria-hidden", "false");
                     });
                 }
             }else if(firstTurn <= scrollTop && scrollTop < secoundTurn){
                 const $elementsToFadeOutFreedom = $('.strengh_titleText__logic, .strengh_desc__logic, .strengh_titleText__material, .strengh_desc__material');
-                $elementsToFadeOutFreedom.fadeOut(200).attr("aria-hidden", "true").promise().done(function(){
+                $elementsToFadeOutFreedom.stop(true, true).fadeOut(200).attr("aria-hidden", "true").promise().done(function(){
                     const $elementsToFadeInFreedom = $('.strengh_desc__freedom, .strengh_titleText__freedom');
                     $elementsToFadeInFreedom.fadeIn(200).attr("aria-hidden", "false");
                 });
@@ -125,7 +133,7 @@ $(window).on('load', function(){
                 };
             }else if(secoundTurn <= scrollTop && scrollTop < endFixed){
                 const $elementsToFadeOutMaterial = $('.strengh_titleText__logic, .strengh_desc__logic, .strengh_titleText__freedom, .strengh_desc__freedom');
-                $elementsToFadeOutMaterial.fadeOut(200).attr("aria-hidden", "true").promise().done(function(){
+                $elementsToFadeOutMaterial.stop(true, true).fadeOut(200).attr("aria-hidden", "true").promise().done(function(){
                     const $elementsToFadeInMaterial = $('.strengh_desc__material, .strengh_titleText__material');
                     $elementsToFadeInMaterial.fadeIn(200).attr("aria-hidden", "false");
                 });
@@ -134,13 +142,17 @@ $(window).on('load', function(){
                 };
             }
         }else if(endFixed <= scrollTop){
-
-            $target.css({
+            if($target.hasClass('strengh_text__is-fixed')){
+                $target.removeClass('strengh_text__is-fixed');
+            }
+            $target.addClass('strengh_text__is-end')
+            
+            /*$target.css({
                 'position': 'absolute',
                 'width': '100vw',
                 'top' :'auto',
                 'bottom': '0'
-            });
+            });*/
         }
     })
     //パララックスアニメーション終了
